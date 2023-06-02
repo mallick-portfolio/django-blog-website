@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Blog, Category, Tag
+from django.shortcuts import get_object_or_404
 # Create your views here.
 
 
@@ -40,3 +41,30 @@ def blogDetails(request, pk):
         'tags': tags,
     }
     return render(request, 'post-details.html', context)
+
+
+def categoryblogs(request, slug):
+    category = get_object_or_404(Category, slug=slug)
+    blogs = category.category_blogs.all()
+    categories = Category.objects.all()
+    tags = Tag.objects.all()[:9]
+    context = {
+        'blogs': blogs,
+        'categories': categories,
+        'tags': tags,
+    }
+    return render(request, 'category_blogs.html', context)
+
+
+def tagBlogs(request, slug):
+    tag = get_object_or_404(Tag, slug=slug)
+    blogs = tag.tag_blogs.all()
+    print("blog", blogs)
+    categories = Category.objects.all()
+    tags = Tag.objects.all()[:9]
+    context = {
+        'blogs': blogs,
+        'categories': categories,
+        'tags': tags,
+    }
+    return render(request, 'tag_blogs.html', context)
