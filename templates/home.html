@@ -1,5 +1,10 @@
-{% extends 'base.html' %} {% load static %} {% block content %} {% include
-'banner.html' %}
+{% extends 'base.html' %} 
+
+{% load static %} 
+
+{% block content %}
+
+{% include 'banner.html' %}
 
 <section class="blog-posts">
   <div class="container">
@@ -19,7 +24,7 @@
                   <ul class="post-info">
                     <li><a href="#">{{blog.user.username}}</a></li>
                     <li><a href="#">{{blog.created_date}}</a></li>
-                    <li><a href="#">12 Comments</a></li>
+                    <li><a href="#"> {{blog.blog_comments.all.count}} Comments</a></li>
                   </ul>
                   <p>{{blog.description}}</p>
                   <div class="post-options">
